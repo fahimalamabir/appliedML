@@ -1,1 +1,1 @@
-# appliedML
+# Applied Machine Learning 
