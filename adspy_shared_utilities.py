@@ -22,9 +22,9 @@ def load_crime_dataset():
     crime.head()
     # remove features with poor coverage or lower relevance, and keep ViolentCrimesPerPop target column
     columns_to_keep = [5, 6] + list(range(11,26)) + list(range(32, 103)) + [145]
-    crime = crime.ix[:,columns_to_keep].dropna()
+    crime = crime.iloc[:,columns_to_keep].dropna()
     crime.head()
-    X_crime = crime.ix[:,range(0,88)]
+    X_crime = crime.iloc[:,range(0,88)]
     y_crime = crime['ViolentCrimesPerPop']
 
     return (X_crime, y_crime)
@@ -38,8 +38,8 @@ def plot_decision_tree(clf, feature_names, class_names):
     # import sys; sys.executable
     # !{sys.executable} -m pip install pydotplus
 
-    export_graphviz(clf, out_file="readonly/adspy_temp.dot", feature_names=feature_names, class_names=class_names, filled = True, impurity = False)
-    with open("readonly/adspy_temp.dot") as f:
+    export_graphviz(clf, out_file="adspy_temp.dot", feature_names=feature_names, class_names=class_names, filled = True, impurity = False)
+    with open("adspy_temp.dot") as f:
         dot_graph = f.read()
     # Alternate method using pydotplus, if installed.
     # graph = pydotplus.graphviz.graph_from_dot_data(dot_graph)
